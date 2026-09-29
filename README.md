@@ -13,4 +13,4 @@ Sadece HTML ile kurulmuş statik iskelet. CSS yok, JavaScript yok.
 - `sprint1/etkinlik-ekle.html` — yeni etkinlik ekleme formu
 - `sprint1/etkinlik-guncelle.html` — etkinlik güncelleme formu
 
-**Canlı adres:** _(deploy sonrası eklenecek)_
+**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app
