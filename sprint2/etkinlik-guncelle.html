@@ -2,43 +2,48 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Etkinlik Güncelle</title>
+  <link rel="stylesheet" href="css/2211012057.css">
 </head>
 <body>
   <header>
     <h1>Etkinlik Güncelle</h1>
     <nav>
       <a href="index.html">Ana Sayfa</a>
+      <a href="etkinlikler.html">Etkinlikler</a>
       <a href="etkinlik-ekle.html">Ekle</a>
-      <a href="etkinlik-guncelle.html">Güncelle</a>
+      <a href="etkinlik-guncelle.html" aria-current="page">Güncelle</a>
     </nav>
   </header>
 
   <main>
     <form action="#" method="post">
       <p>
-        <label for="etkinlik-adi">Etkinlik Adı</label><br>
-        <input type="text" id="etkinlik-adi" name="etkinlik-adi" value="Kariyer Günleri" required>
+        <label for="etkinlik-adi">Etkinlik adı</label>
+        <input type="text" id="etkinlik-adi" name="etkinlik-adi" value="Kariyer Günleri 2026" required>
       </p>
 
       <p>
-        <label for="kategori">Kategori</label><br>
-        <select id="kategori" name="kategori">
+        <label for="kategori">Kategori</label>
+        <select id="kategori" name="kategori" required>
+          <option value="">Seçiniz</option>
           <option value="seminer" selected>Seminer</option>
           <option value="atolye">Atölye</option>
+          <option value="soylesi">Söyleşi</option>
           <option value="konferans">Konferans</option>
           <option value="diger">Diğer</option>
         </select>
       </p>
 
       <p>
-        <label for="tarih">Tarih</label><br>
-        <input type="text" id="tarih" name="tarih" value="12.10.2026" required>
+        <label for="tarih">Tarih</label>
+        <input type="text" id="tarih" name="tarih" value="12.10.2026" placeholder="gg.aa.yyyy" required>
       </p>
 
       <p>
-        <label for="aciklama">Açıklama</label><br>
-        <textarea id="aciklama" name="aciklama">Mezun söyleşileri</textarea>
+        <label for="aciklama">Açıklama</label>
+        <textarea id="aciklama" name="aciklama" required>Mezun söyleşileri</textarea>
       </p>
 
       <p>

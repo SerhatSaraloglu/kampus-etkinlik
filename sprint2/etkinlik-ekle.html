@@ -2,14 +2,17 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Etkinlik Ekle</title>
+  <link rel="stylesheet" href="css/2211012057.css">
 </head>
 <body>
   <header>
     <h1>Etkinlik Ekle</h1>
     <nav>
       <a href="index.html">Ana Sayfa</a>
-      <a href="etkinlik-ekle.html">Ekle</a>
+      <a href="etkinlikler.html">Etkinlikler</a>
+      <a href="etkinlik-ekle.html" aria-current="page">Ekle</a>
       <a href="etkinlik-guncelle.html">Güncelle</a>
     </nav>
   </header>
@@ -17,28 +20,30 @@
   <main>
     <form action="#" method="post">
       <p>
-        <label for="etkinlik-adi">Etkinlik Adı</label><br>
+        <label for="etkinlik-adi">Etkinlik adı</label>
         <input type="text" id="etkinlik-adi" name="etkinlik-adi" required>
       </p>
 
       <p>
-        <label for="kategori">Kategori</label><br>
-        <select id="kategori" name="kategori">
+        <label for="kategori">Kategori</label>
+        <select id="kategori" name="kategori" required>
+          <option value="" selected>Seçiniz</option>
           <option value="seminer">Seminer</option>
           <option value="atolye">Atölye</option>
+          <option value="soylesi">Söyleşi</option>
           <option value="konferans">Konferans</option>
           <option value="diger">Diğer</option>
         </select>
       </p>
 
       <p>
-        <label for="tarih">Tarih</label><br>
+        <label for="tarih">Tarih</label>
         <input type="text" id="tarih" name="tarih" placeholder="gg.aa.yyyy" required>
       </p>
 
       <p>
-        <label for="aciklama">Açıklama</label><br>
-        <textarea id="aciklama" name="aciklama"></textarea>
+        <label for="aciklama">Açıklama</label>
+        <textarea id="aciklama" name="aciklama" required></textarea>
       </p>
 
       <p>
