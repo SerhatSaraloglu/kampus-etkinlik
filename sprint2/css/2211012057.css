@@ -1,0 +1,293 @@
+/* Serhat Saraloğlu — 2211012057 */
+:root {
+  --no: 2211012057;
+  --ton: mod(var(--no), 360);
+  --renk-ana: hsl(var(--ton) 65% 38%);
+  --renk-zemin: hsl(var(--ton) 30% 97%);
+  --font: "Palatino Linotype", serif;
+  --bosluk-m: 1rem;  --kose: 8px;
+
+  /* Ton 57 açık bir sarı: okunurluk için yazılar aynı tonun koyusu */
+  --renk-yazi: hsl(var(--ton) 30% 15%);
+  --renk-vurgu: hsl(var(--ton) 65% 24%);
+  --renk-cizgi: hsl(var(--ton) 20% 82%);
+  --renk-kart: hsl(var(--ton) 30% 100%);
+  --renk-afis: hsl(var(--ton) 45% 85%);
+  --renk-hata: hsl(0 70% 42%);
+  --renk-hata-zemin: hsl(0 100% 97%);
+  --bosluk-s: 0.5rem;
+  --bosluk-l: 1.5rem;
+  --dokunma: 44px;
+  --genislik: 60rem;
+}
+body { font-family: var(--font); }
+
+/* ---------- Temel ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--renk-zemin);
+  color: var(--renk-yazi);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--renk-vurgu);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 0 0 var(--bosluk-s);
+}
+
+/* ---------- Başlık ve menü (beş sayfada ortak) ---------- */
+header {
+  background: var(--renk-ana);
+  color: var(--renk-yazi);
+  padding: var(--bosluk-m);
+}
+
+header h1 {
+  font-size: 1.375rem;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--bosluk-m);
+}
+
+nav a {
+  color: var(--renk-yazi);
+  font-weight: normal;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--dokunma);
+}
+
+nav a[aria-current="page"] {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* ---------- İçerik alanı ---------- */
+main {
+  max-width: var(--genislik);
+  margin: 0 auto;
+  padding: var(--bosluk-m);
+}
+
+main > p:first-child {
+  margin-top: 0;
+}
+
+footer {
+  max-width: var(--genislik);
+  margin: 0 auto;
+  padding: var(--bosluk-m);
+  border-top: 1px solid var(--renk-cizgi);
+  font-size: 0.9375rem;
+}
+
+/* ---------- Kartlar: telefonda tek sütun ---------- */
+.kartlar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--bosluk-m);
+  margin-bottom: var(--bosluk-m);
+}
+
+.kart {
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+  padding: var(--bosluk-m);
+}
+
+.kart h3 {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.kart p {
+  margin: 0;
+}
+
+.kart a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--dokunma);
+}
+
+/* ---------- Etkinlik detayı ---------- */
+.detay {
+  display: grid;
+  gap: var(--bosluk-m);
+}
+
+.detay figure {
+  margin: 0;
+}
+
+.afis {
+  display: grid;
+  place-items: center;
+  min-height: 10rem;
+  background: var(--renk-afis);
+  border-radius: var(--kose);
+}
+
+.detay figcaption {
+  font-style: italic;
+  margin-top: var(--bosluk-s);
+}
+
+.detay dl {
+  margin: 0;
+  padding: var(--bosluk-m);
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+}
+
+.detay dt {
+  font-weight: bold;
+}
+
+.detay dd {
+  margin: 0 0 var(--bosluk-s);
+}
+
+.detay p {
+  margin: 0;
+}
+
+/* ---------- Formlar ---------- */
+form p {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bosluk-s);
+  margin: 0 0 var(--bosluk-m);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: var(--dokunma);
+  padding: var(--bosluk-s);
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+}
+
+textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--renk-vurgu);
+  outline-offset: 1px;
+}
+
+/* Kullanıcı dokunduktan veya boş gönderdikten sonra hatalı alan kırmızı */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border: 2px solid var(--renk-hata);
+  background: var(--renk-hata-zemin);
+  color: var(--renk-hata);
+}
+
+button {
+  width: 100%;
+  min-height: var(--dokunma);
+  padding: var(--bosluk-s) var(--bosluk-l);
+  background: var(--renk-vurgu);
+  color: var(--renk-kart);
+  font-weight: bold;
+  border: 0;
+  border-radius: var(--kose);
+  cursor: pointer;
+}
+
+button:hover,
+button:focus-visible {
+  background: var(--renk-yazi);
+}
+
+/* ---------- Geniş ekran ---------- */
+@media (min-width: 40rem) {
+  header {
+    padding: var(--bosluk-m) max(var(--bosluk-m), (100% - var(--genislik)) / 2 + var(--bosluk-m));
+  }
+
+  .kartlar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .kartlar.iki {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Afiş solda, künye sağda */
+  .detay {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .detay figure {
+    grid-row: span 3;
+  }
+
+  .detay dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--bosluk-m);
+  }
+
+  .detay dd {
+    margin: 0;
+  }
+
+  form {
+    max-width: 36rem;
+  }
+
+  button {
+    width: auto;
+  }
+}
