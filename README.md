@@ -24,8 +24,10 @@ Sprint 1'in HTML'i `sprint2/` klasörüne kopyalanıp CSS ile giydirildi.
   (`--no: 2211012057` → ton 57, son hane 7 → `"Palatino Linotype"`)
 - `sprint2/index.html` — tanıtım + yaklaşan 2 etkinlik kartı
 - `sprint2/etkinlikler.html` — tüm etkinlikler, `section > article` kart grid
-- `sprint2/etkinlik-detay.html` — afiş solda, künye (`dl`) sağda; telefonda alt alta
-- `sprint2/etkinlik-detay-siber-guvenlik.html` — Siber Güvenlik detayı, afiş görseli `sprint2/img/siber-guvenlik.jpg`
+- `sprint2/etkinlik-detay.html` — Kariyer Günleri detayı; afiş solda, künye (`dl`) sağda; telefonda alt alta
+- `sprint2/etkinlik-detay-robotik-atolyesi.html` — Robotik Atölyesi detayı
+- `sprint2/etkinlik-detay-siber-guvenlik.html` — Siber Güvenlik detayı
+- `sprint2/img/` — etkinlik afiş görselleri
 - `sprint2/etkinlik-ekle.html` — label üstte, boş gönderilen alan kırmızı
 - `sprint2/etkinlik-guncelle.html` — aynı form, alanlar dolu
 
