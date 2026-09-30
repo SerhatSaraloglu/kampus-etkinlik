@@ -159,6 +159,12 @@ footer {
   border-radius: var(--kose);
 }
 
+.detay figure img {
+  display: block;
+  width: 100%;
+  border-radius: var(--kose);
+}
+
 .detay figcaption {
   font-style: italic;
   margin-top: var(--bosluk-s);
@@ -266,6 +272,7 @@ button:focus-visible {
   /* Afiş solda, künye sağda */
   .detay {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto 1fr;
     align-items: start;
   }
 
