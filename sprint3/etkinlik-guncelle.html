@@ -18,38 +18,56 @@
   </header>
 
   <main>
-    <form action="#" method="post">
+    <form id="etkinlik-formu" novalidate>
       <p>
-        <label for="etkinlik-adi">Etkinlik adı</label>
-        <input type="text" id="etkinlik-adi" name="etkinlik-adi" value="Kariyer Günleri 2026" required>
+        <label for="ad">Etkinlik adı</label>
+        <input type="text" id="ad" name="ad">
+        <span class="hata" id="ad-hata"></span>
       </p>
-
       <p>
         <label for="kategori">Kategori</label>
-        <select id="kategori" name="kategori" required>
+        <select id="kategori" name="kategori">
           <option value="">Seçiniz</option>
-          <option value="seminer" selected>Seminer</option>
-          <option value="atolye">Atölye</option>
-          <option value="soylesi">Söyleşi</option>
-          <option value="konferans">Konferans</option>
-          <option value="diger">Diğer</option>
+          <option value="Seminer">Seminer</option>
+          <option value="Atölye">Atölye</option>
+          <option value="Söyleşi">Söyleşi</option>
+          <option value="Konser">Konser</option>
+          <option value="Konferans">Konferans</option>
+          <option value="Diğer">Diğer</option>
         </select>
+        <span class="hata" id="kategori-hata"></span>
       </p>
-
       <p>
         <label for="tarih">Tarih</label>
-        <input type="text" id="tarih" name="tarih" value="12.10.2026" placeholder="gg.aa.yyyy" required>
+        <input type="date" id="tarih" name="tarih">
+        <span class="hata" id="tarih-hata"></span>
       </p>
-
+      <p>
+        <label for="saat">Saat</label>
+        <input type="time" id="saat" name="saat">
+        <span class="hata" id="saat-hata"></span>
+      </p>
+      <p>
+        <label for="yer">Yer</label>
+        <input type="text" id="yer" name="yer">
+        <span class="hata" id="yer-hata"></span>
+      </p>
+      <p>
+        <label for="kontenjan">Kontenjan (isteğe bağlı)</label>
+        <input type="number" id="kontenjan" name="kontenjan">
+        <span class="hata" id="kontenjan-hata"></span>
+      </p>
       <p>
         <label for="aciklama">Açıklama</label>
-        <textarea id="aciklama" name="aciklama" required>Mezun söyleşileri</textarea>
+        <textarea id="aciklama" name="aciklama"></textarea>
+        <span class="hata" id="aciklama-hata"></span>
       </p>
 
       <p>
         <button type="submit">Güncelle</button>
       </p>
     </form>
+    <div id="form-mesaj"></div>
   </main>
 
   <footer>

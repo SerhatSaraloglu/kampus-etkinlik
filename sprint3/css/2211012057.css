@@ -254,6 +254,48 @@ textarea:user-invalid {
   font-weight: bold;
 }
 
+/* Doğrulama: hatalı alan kırmızı, altında kısa hata metni */
+[aria-invalid="true"] {
+  border: 2px solid var(--renk-hata);
+  background: var(--renk-hata-zemin);
+  color: var(--renk-hata);
+}
+
+.hata {
+  color: var(--renk-hata);
+  font-size: 0.9375rem;
+}
+
+.hata:empty {
+  display: none;
+}
+
+#form-mesaj:empty {
+  display: none;
+}
+
+.mesaj {
+  padding: var(--bosluk-m);
+  border-radius: var(--kose);
+}
+
+.mesaj.hata-mesaji {
+  background: var(--renk-hata-zemin);
+  border: 2px solid var(--renk-hata);
+  color: var(--renk-hata);
+}
+
+.mesaj.basari {
+  background: hsl(140 60% 94%);
+  border: 2px solid hsl(140 55% 28%);
+  color: hsl(140 60% 16%);
+}
+
+.mesaj pre {
+  margin: var(--bosluk-s) 0 0;
+  white-space: pre-wrap;
+}
+
 button {
   width: 100%;
   min-height: var(--dokunma);
