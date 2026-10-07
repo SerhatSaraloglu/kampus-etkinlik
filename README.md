@@ -1,3 +1,5 @@
+**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app
+
 # Kampüs Etkinlikleri
 
 Web Teknolojileri ve Programlama dersi dönem projesi. Kampüs etkinliklerinin
@@ -32,3 +34,8 @@ Sprint 1'in HTML'i `sprint2/` klasörüne kopyalanıp CSS ile giydirildi.
 - `sprint2/etkinlik-guncelle.html` — aynı form, alanlar dolu
 
 **Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel Root Directory: `sprint2`)
+
+## Sprint 3 · JavaScript ve DOM
+
+`sprint2/` klasörü `sprint3/` olarak kopyalandı (Adım 0). Sayfalar bu sprintte veriden üretilecek;
+modüller `type="module"` olduğu için sayfa Live Server (`http://127.0.0.1:5500/sprint3/`) ile açılmalı.
