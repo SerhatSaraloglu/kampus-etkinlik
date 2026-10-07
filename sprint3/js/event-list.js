@@ -34,7 +34,42 @@ function sortKey(text) {
   return text.split("-").reverse().join("-");
 }
 
-if (list.dataset.limit) {
+const form = document.querySelector("#filtre-formu");
+
+if (form) {
+  const arama = document.querySelector("#arama");
+  const kategoriSecimi = document.querySelector("#kategori-filtre");
+  const sonucSatiri = document.querySelector("#sonuc");
+
+  // Kategorileri veriden üret, her biri bir kez
+  [...new Set(events.map((e) => e.category))].forEach((kategori) => {
+    kategoriSecimi.add(new Option(kategori, kategori));
+  });
+
+  function filtrele() {
+    const aranan = arama.value.trim().toLocaleLowerCase("tr-TR");
+    const secilen = kategoriSecimi.value;
+
+    const sonuc = events.filter((e) => {
+      const metinUyuyor = `${e.title} ${e.description} ${e.category}`
+        .toLocaleLowerCase("tr-TR")
+        .includes(aranan);
+      const kategoriUyuyor = secilen === "" || e.category === secilen;
+      return metinUyuyor && kategoriUyuyor;
+    });
+
+    render(sonuc);
+    sonucSatiri.textContent =
+      sonuc.length === 0
+        ? "Aradığınız etkinlik bulunamadı."
+        : `${sonuc.length} etkinlik listeleniyor.`;
+  }
+
+  form.addEventListener("submit", (e) => e.preventDefault());
+  arama.addEventListener("input", filtrele);
+  kategoriSecimi.addEventListener("change", filtrele);
+  filtrele();
+} else if (list.dataset.limit) {
   const yaklasan = [...events]
     .sort((a, b) => sortKey(a.date).localeCompare(sortKey(b.date)))
     .slice(0, Number(list.dataset.limit));
