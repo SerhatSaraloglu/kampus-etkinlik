@@ -63,6 +63,7 @@ if (!event) {
 
       <p>${event.description}</p>
 
+      <a href="etkinlik-guncelle.html?id=${event.id}">Bu etkinliği güncelle</a>
       <a href="etkinlikler.html">← Listeye dön</a>
     </article>`;
 }
