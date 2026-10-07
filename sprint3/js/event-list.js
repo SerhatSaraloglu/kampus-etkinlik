@@ -10,7 +10,7 @@ function parseDate(text) {
 
 function createCard(event) {
   const tarih = parseDate(event.date);
-  const iso = `${event.date.split("-").reverse().join("-")}`;
+  const iso = sortKey(event.date);
   const tarihYazi = tarih.toLocaleDateString("tr-TR", {
     day: "numeric",
     month: "long",
@@ -29,4 +29,16 @@ function render(dizi) {
   list.innerHTML = dizi.map(createCard).join("");
 }
 
-render(events);
+// GG-AA-YYYY -> YYYY-AA-GG: localeCompare ile doğru tarih sırası için
+function sortKey(text) {
+  return text.split("-").reverse().join("-");
+}
+
+if (list.dataset.limit) {
+  const yaklasan = [...events]
+    .sort((a, b) => sortKey(a.date).localeCompare(sortKey(b.date)))
+    .slice(0, Number(list.dataset.limit));
+  render(yaklasan);
+} else {
+  render(events);
+}
