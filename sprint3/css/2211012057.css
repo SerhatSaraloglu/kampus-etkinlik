@@ -229,6 +229,18 @@ textarea:user-invalid {
   color: var(--renk-hata);
 }
 
+/* Filtre kutusu: telefonda alt alta */
+.filtre {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--bosluk-s);
+  margin-bottom: var(--bosluk-s);
+}
+
+.filtre label {
+  font-weight: bold;
+}
+
 button {
   width: 100%;
   min-height: var(--dokunma);
@@ -283,6 +295,15 @@ button:focus-visible {
 
   form {
     max-width: 36rem;
+  }
+
+  /* Filtre: geniş ekranda iki alan yan yana (etiket üstte, kutu altta) */
+  form.filtre {
+    max-width: none;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    column-gap: var(--bosluk-m);
   }
 
   button {
