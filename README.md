@@ -37,5 +37,15 @@ Sprint 1'in HTML'i `sprint2/` klasörüne kopyalanıp CSS ile giydirildi.
 
 ## Sprint 3 · JavaScript ve DOM
 
-`sprint2/` klasörü `sprint3/` olarak kopyalandı (Adım 0). Sayfalar bu sprintte veriden üretilecek;
-modüller `type="module"` olduğu için sayfa Live Server (`http://127.0.0.1:5500/sprint3/`) ile açılmalı.
+`sprint2/` klasörü `sprint3/` olarak kopyalandı; sayfalar artık tek bir veri dosyasından üretiliyor.
+Modüller `type="module"` olduğu için yerelde Live Server ile açılmalı (`file://` çalışmaz).
+Yasak olanlar kullanılmadı: `localStorage`, framework, jQuery.
+
+- `sprint3/js/data.js` — 6 etkinlik (`id`, `title`, `category`, `date`, `time`, `location`, `description`, isteğe bağlı `capacity`)
+- `sprint3/js/event-list.js` — kart üretimi; ana sayfada `data-limit="2"` ile yaklaşan 2 etkinlik; liste sayfasında arama + kategori filtresi
+- `sprint3/js/event-detail.js` — `?id=` ile detay; geçersiz/eksik id'de hata kutusu ve "Listeye dön"
+- `sprint3/js/event-form.js` — ekle/güncelle formu: `novalidate`, kendi hata ve başarı mesajı, `FormData` ile nesne; `data-mode="guncelle"` ile id'ye göre dolu form
+- Menüde Ana Sayfa, Etkinlikler, Ekle; güncelleme sayfasına sadece detaydaki "Bu etkinliği güncelle" bağlantısıyla gelinir
+- Deneme: `/etkinlik-detay.html?id=event-3` (Siber Güvenlik)
+
+**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel Root Directory: `sprint3`)
