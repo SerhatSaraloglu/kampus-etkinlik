@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-label="Etkinlik afişi">
+  <rect width="600" height="800" fill="#efe9a8"/>
+  <rect x="30" y="30" width="540" height="740" fill="none" stroke="#4a4410" stroke-width="6"/>
+  <text x="300" y="360" font-family="Palatino Linotype, serif" font-size="64" font-weight="bold" text-anchor="middle" fill="#2b2708">Kampüs</text>
+  <text x="300" y="440" font-family="Palatino Linotype, serif" font-size="64" font-weight="bold" text-anchor="middle" fill="#2b2708">Etkinlikleri</text>
+  <text x="300" y="520" font-family="Palatino Linotype, serif" font-size="32" text-anchor="middle" fill="#4a4410">Etkinlik afişi</text>
+</svg>
