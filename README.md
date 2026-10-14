@@ -49,3 +49,28 @@ Yasak olanlar kullanılmadı: `localStorage`, framework, jQuery.
 - Deneme: `/etkinlik-detay.html?id=event-3` (Siber Güvenlik)
 
 **Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel Root Directory: `sprint3`)
+
+## Sprint 4 · Vite, TypeScript ve React
+
+Aynı site `frontend/` klasöründe Vite + React + TypeScript ile yeniden yazıldı. `sprint1/`–`sprint3/` olduğu gibi duruyor.
+Sayfayı artık Vite açar: `cd frontend && npm install && npm run dev` → http://localhost:5173 (Live Server gerekmez).
+React Router yok: hangi sayfanın açık olduğu `useState` ile tutulur (Sprint 6'da router gelecek).
+
+Oluşan yapı:
+
+- `frontend/package.json` — proje adı, komutlar (`dev`, `build`, `preview`) ve paket listesi.
+- `frontend/package-lock.json` — yüklenen paketlerin tam sürümleri.
+- `frontend/node_modules/` — indirilen paketler; GitHub'a gitmez.
+- `frontend/tsconfig*.json` — TypeScript ayarları.
+- `frontend/vite.config.ts` — Vite ayarları ve React eklentisi.
+- `frontend/index.html` — tek HTML sayfası; içinde React'in çizileceği boş `div#root` var.
+- `frontend/src/main.tsx` — React'i başlatır, `App`'i `root`'a çizer.
+- `frontend/src/App.tsx` — uygulamanın ana bileşeni; 5 sayfanın hepsi burada (ana sayfa, etkinlikler, detay, ekle, güncelle).
+- `frontend/src/App.css` — uygulamanın stilleri; Sprint 3'teki `2211012057.css` buraya taşındı.
+- `frontend/src/index.css` — tüm sayfaya genel stil; bu sprintte boş.
+- `frontend/src/types/campus-event.ts` — `Category` (4 değerli union) ve `CampusEvent` tipleri.
+- `frontend/src/data/events.ts` — tipli (`CampusEvent[]`) 6 etkinlik kaydı.
+- `frontend/src/utils/filter-events.ts` — saf fonksiyonlar: `searchEvents`, `filterByCategory`, `findEventById`.
+- `frontend/public/` — olduğu gibi kopyalanan dosyalar (`afis.svg`).
+
+**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel Root Directory: `frontend`, Framework Preset: `Vite`)
