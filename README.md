@@ -74,3 +74,22 @@ Oluşan yapı:
 - `frontend/public/` — olduğu gibi kopyalanan dosyalar (`afis.svg`).
 
 **Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel Root Directory: `frontend`, Framework Preset: `Vite`)
+
+## Sprint 5 · React Bileşenleri
+
+Tek büyük `App.tsx` (~270 satır) parçalara bölündü: her parça kendi dosyasında bir bileşen, veriyi props ile alıyor, olayları callback ile App'e bildiriyor. State (`page`, `selectedId`, `searchText`, `category`) App'te kalıyor (lifting state). `App.tsx` ~100 satıra indi; ekran Sprint 4 ile aynı.
+
+Yeni dosyalar:
+
+- `frontend/src/components/layout/Header.tsx` — `title`, isteğe bağlı `text`
+- `frontend/src/components/layout/Navigation.tsx` — `current`, `onNavigate`; menü dizisi burada
+- `frontend/src/components/layout/Footer.tsx` — props yok
+- `frontend/src/components/events/EventCard.tsx` — `event`, `onShowDetail`
+- `frontend/src/components/events/EventList.tsx` — `events`, `onShowDetail`, isteğe bağlı `emptyText`; `key={event.id}` burada
+- `frontend/src/components/events/EventFilter.tsx` — `searchText`, `category`, `categories`, `onSearchChange`, `onCategoryChange`
+- `frontend/src/components/events/EventDetail.tsx` — `event`, `onBack`, `onEdit`
+- `frontend/src/components/forms/EventForm.tsx` — `onSubmit` (kaydetme Sprint 6'da)
+- `frontend/src/types/page.ts` — `PageName` tipi
+- `frontend/src/utils/format-date.ts` — `formatDate`
+
+**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel ayarı değişmedi: Root Directory `frontend`, Preset `Vite`)
