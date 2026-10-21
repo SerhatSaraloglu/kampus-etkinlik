@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { events } from "./data/events";
-import type { CampusEvent, Category } from "./types/campus-event";
+import type { Category } from "./types/campus-event";
 import {
   filterByCategory,
   findEventById,
   searchEvents,
 } from "./utils/filter-events";
 import type { PageName } from "./types/page";
-import { formatDate } from "./utils/format-date";
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
+import EventList from "./components/events/EventList";
+import EventFilter from "./components/events/EventFilter";
+import EventDetail from "./components/events/EventDetail";
 
 const SITE_NAME = "Kampüs Etkinlikleri";
 
@@ -47,28 +49,6 @@ function App() {
     document.title = title === SITE_NAME ? SITE_NAME : `${SITE_NAME} — ${title}`;
   }, [title]);
 
-  function renderCard(event: CampusEvent) {
-    return (
-      <article className="kart" key={event.id}>
-        <h3>{event.title}</h3>
-        <p>
-          {event.category} · <time dateTime={event.date}>{formatDate(event.date)}</time>
-        </p>
-        <p>{event.location}</p>
-        <p>Kontenjan: {event.capacity}</p>
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            go("detail", event.id);
-          }}
-        >
-          Detayları gör →
-        </a>
-      </article>
-    );
-  }
-
   return (
     <>
       <Header title={title} text={text} />
@@ -79,7 +59,9 @@ function App() {
           <>
             <section className="etkinlik-listesi">
               <h2>Yaklaşan 2 etkinlik</h2>
-              <div className="kartlar iki">{upcoming.map(renderCard)}</div>
+              <div className="kartlar iki">
+                <EventList events={upcoming} onShowDetail={(id) => go("detail", id)} />
+              </div>
               <a
                 href="#"
                 onClick={(e) => {
@@ -95,96 +77,45 @@ function App() {
 
         {page === "events" && (
           <section className="etkinlik-listesi">
-            <form className="filtre" onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor="arama">Etkinlik ara</label>
-              <input
-                type="search"
-                id="arama"
-                placeholder="atölye, kariyer..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
+            <EventFilter
+              searchText={searchText}
+              category={category}
+              categories={categories}
+              onSearchChange={setSearchText}
+              onCategoryChange={setCategory}
+            />
+            {filtered.length > 0 && <p>{filtered.length} etkinlik listeleniyor.</p>}
+            <div className="kartlar">
+              <EventList
+                events={filtered}
+                onShowDetail={(id) => go("detail", id)}
+                emptyText="Aradığınız etkinlik bulunamadı."
               />
-              <label htmlFor="kategori-filtre">Kategori</label>
-              <select
-                id="kategori-filtre"
-                value={category}
-                onChange={(e) => setCategory(e.target.value as Category | "")}
-              >
-                <option value="">Tümü</option>
-                {categories.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </form>
-            <p>
-              {filtered.length === 0
-                ? "Aradığınız etkinlik bulunamadı."
-                : `${filtered.length} etkinlik listeleniyor.`}
-            </p>
-            <div className="kartlar">{filtered.map(renderCard)}</div>
+            </div>
           </section>
         )}
 
-        {page === "detail" && !selected && (
-          <div className="hata-kutusu" role="alert">
-            <p>Etkinlik bulunamadı. Seçili etkinlik numarası geçersiz veya eksik.</p>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                go("events");
-              }}
-            >
-              ← Listeye dön
-            </a>
-          </div>
-        )}
-
-        {page === "detail" && selected && (
-          <article className={selected.image ? "detay" : "detay afissiz"}>
-            {selected.image && (
-              <figure>
-                <img src={selected.image} alt={`${selected.title} afişi`} />
-                <figcaption>Şekil 1: etkinlik afişi</figcaption>
-              </figure>
-            )}
-            <dl>
-              <dt>Tarih</dt>
-              <dd>
-                <time dateTime={`${selected.date}T${selected.time}`}>
-                  {formatDate(selected.date)}, {selected.time}
-                </time>
-              </dd>
-              <dt>Yer</dt>
-              <dd>{selected.location}</dd>
-              <dt>Kategori</dt>
-              <dd>{selected.category}</dd>
-              <dt>Kontenjan</dt>
-              <dd>{selected.capacity}</dd>
-            </dl>
-            <p>{selected.description}</p>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                go("update", selected.id);
-              }}
-            >
-              Bu etkinliği güncelle
-            </a>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                go("events");
-              }}
-            >
-              ← Listeye dön
-            </a>
-          </article>
-        )}
+        {page === "detail" &&
+          (selected ? (
+            <EventDetail
+              event={selected}
+              onBack={() => go("events")}
+              onEdit={(id) => go("update", id)}
+            />
+          ) : (
+            <div className="hata-kutusu" role="alert">
+              <p>Etkinlik bulunamadı. Seçili etkinlik numarası geçersiz veya eksik.</p>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  go("events");
+                }}
+              >
+                ← Listeye dön
+              </a>
+            </div>
+          ))}
 
         {(page === "add" || page === "update") && (
           <form className="form" noValidate onSubmit={(e) => e.preventDefault()}>
