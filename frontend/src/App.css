@@ -61,10 +61,20 @@ h3 {
 }
 
 /* ---------- Başlık ve menü (beş sayfada ortak) ---------- */
-header {
+/* Header ve Navigation iki ayrı bileşen; tek yeşil bant gibi görünsünler */
+header,
+nav.menu {
   background: var(--renk-ana);
   color: var(--renk-yazi);
   padding: var(--bosluk-m);
+}
+
+header {
+  padding-bottom: 0;
+}
+
+nav.menu {
+  padding-top: 0;
 }
 
 header h1 {
@@ -315,8 +325,10 @@ button:focus-visible {
 
 /* ---------- Geniş ekran ---------- */
 @media (min-width: 40rem) {
-  header {
-    padding: var(--bosluk-m) max(var(--bosluk-m), (100% - var(--genislik)) / 2 + var(--bosluk-m));
+  header,
+  nav.menu {
+    padding-left: max(var(--bosluk-m), (100% - var(--genislik)) / 2 + var(--bosluk-m));
+    padding-right: max(var(--bosluk-m), (100% - var(--genislik)) / 2 + var(--bosluk-m));
   }
 
   .kartlar {

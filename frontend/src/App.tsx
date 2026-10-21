@@ -9,14 +9,11 @@ import {
 } from "./utils/filter-events";
 import type { PageName } from "./types/page";
 import { formatDate } from "./utils/format-date";
+import Header from "./components/layout/Header";
+import Navigation from "./components/layout/Navigation";
+import Footer from "./components/layout/Footer";
 
 const SITE_NAME = "Kampüs Etkinlikleri";
-
-const menuItems: { page: PageName; label: string }[] = [
-  { page: "home", label: "Ana Sayfa" },
-  { page: "events", label: "Etkinlikler" },
-  { page: "add", label: "Ekle" },
-];
 
 const categories = [...new Set(events.map((e) => e.category))];
 
@@ -43,6 +40,8 @@ function App() {
   if (page === "detail") title = selected ? selected.title : "Etkinlik bulunamadı";
   if (page === "add") title = "Etkinlik Ekle";
   if (page === "update") title = "Etkinlik Güncelle";
+  const text =
+    page === "home" ? "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin." : undefined;
 
   useEffect(() => {
     document.title = title === SITE_NAME ? SITE_NAME : `${SITE_NAME} — ${title}`;
@@ -72,33 +71,12 @@ function App() {
 
   return (
     <>
-      <header className="site-baslik">
-        <h1>{title}</h1>
-        <nav className="menu">
-          {menuItems.map((item) => (
-            <a
-              key={item.page}
-              href="#"
-              aria-current={
-                page === item.page || (page === "detail" && item.page === "events")
-                  ? "page"
-                  : undefined
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                go(item.page);
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </header>
+      <Header title={title} text={text} />
+      <Navigation current={page} onNavigate={go} />
 
       <main>
         {page === "home" && (
           <>
-            <p>Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.</p>
             <section className="etkinlik-listesi">
               <h2>Yaklaşan 2 etkinlik</h2>
               <div className="kartlar iki">{upcoming.map(renderCard)}</div>
@@ -252,9 +230,7 @@ function App() {
         )}
       </main>
 
-      <footer>
-        <p>Serhat Saraloğlu · 2026</p>
-      </footer>
+      <Footer />
     </>
   );
 }
