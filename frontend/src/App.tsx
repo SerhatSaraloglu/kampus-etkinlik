@@ -7,8 +7,8 @@ import {
   findEventById,
   searchEvents,
 } from "./utils/filter-events";
-
-type PageName = "home" | "events" | "detail" | "add" | "update";
+import type { PageName } from "./types/page";
+import { formatDate } from "./utils/format-date";
 
 const SITE_NAME = "Kampüs Etkinlikleri";
 
@@ -17,10 +17,6 @@ const menuItems: { page: PageName; label: string }[] = [
   { page: "events", label: "Etkinlikler" },
   { page: "add", label: "Ekle" },
 ];
-
-// "2026-10-12" -> "12 Ekim 2026"
-const formatDate = (date: string) =>
-  new Date(`${date}T00:00`).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
 
 const categories = [...new Set(events.map((e) => e.category))];
 
