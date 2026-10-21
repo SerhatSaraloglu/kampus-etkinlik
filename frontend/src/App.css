@@ -82,6 +82,10 @@ header h1 {
   margin: 0;
 }
 
+header p {
+  margin: var(--bosluk-s) 0 0;
+}
+
 nav {
   display: flex;
   flex-wrap: wrap;

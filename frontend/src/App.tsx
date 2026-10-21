@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { events } from "./data/events";
 import type { Category } from "./types/campus-event";
-import {
-  filterByCategory,
-  findEventById,
-  searchEvents,
-} from "./utils/filter-events";
+import { filterByCategory, findEventById, searchEvents } from "./utils/filter-events";
 import type { PageName } from "./types/page";
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
@@ -14,14 +10,13 @@ import Footer from "./components/layout/Footer";
 import EventList from "./components/events/EventList";
 import EventFilter from "./components/events/EventFilter";
 import EventDetail from "./components/events/EventDetail";
+import EventForm from "./components/forms/EventForm";
 
 const SITE_NAME = "Kampüs Etkinlikleri";
 
 const categories = [...new Set(events.map((e) => e.category))];
 
-const upcoming = [...events]
-  .sort((a, b) => a.date.localeCompare(b.date))
-  .slice(0, 2);
+const upcoming = [...events].sort((a, b) => a.date.localeCompare(b.date)).slice(0, 2);
 
 function App() {
   const [page, setPage] = useState<PageName>("home");
@@ -56,108 +51,43 @@ function App() {
 
       <main>
         {page === "home" && (
-          <>
-            <section className="etkinlik-listesi">
-              <h2>Yaklaşan 2 etkinlik</h2>
-              <div className="kartlar iki">
-                <EventList events={upcoming} onShowDetail={(id) => go("detail", id)} />
-              </div>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  go("events");
-                }}
-              >
-                Tüm etkinlikleri gör →
-              </a>
-            </section>
-          </>
+          <section className="etkinlik-listesi">
+            <h2>Yaklaşan 2 etkinlik</h2>
+            <div className="kartlar iki">
+              <EventList events={upcoming} onShowDetail={(id) => go("detail", id)} />
+            </div>
+            <a href="#" onClick={(e) => { e.preventDefault(); go("events"); }}>
+              Tüm etkinlikleri gör →
+            </a>
+          </section>
         )}
 
         {page === "events" && (
           <section className="etkinlik-listesi">
-            <EventFilter
-              searchText={searchText}
-              category={category}
-              categories={categories}
-              onSearchChange={setSearchText}
-              onCategoryChange={setCategory}
-            />
+            <EventFilter searchText={searchText} category={category} categories={categories}
+              onSearchChange={setSearchText} onCategoryChange={setCategory} />
             {filtered.length > 0 && <p>{filtered.length} etkinlik listeleniyor.</p>}
             <div className="kartlar">
-              <EventList
-                events={filtered}
-                onShowDetail={(id) => go("detail", id)}
-                emptyText="Aradığınız etkinlik bulunamadı."
-              />
+              <EventList events={filtered} onShowDetail={(id) => go("detail", id)}
+                emptyText="Aradığınız etkinlik bulunamadı." />
             </div>
           </section>
         )}
 
         {page === "detail" &&
           (selected ? (
-            <EventDetail
-              event={selected}
-              onBack={() => go("events")}
-              onEdit={(id) => go("update", id)}
-            />
+            <EventDetail event={selected} onBack={() => go("events")} onEdit={(id) => go("update", id)} />
           ) : (
             <div className="hata-kutusu" role="alert">
               <p>Etkinlik bulunamadı. Seçili etkinlik numarası geçersiz veya eksik.</p>
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  go("events");
-                }}
-              >
+              <a href="#" onClick={(e) => { e.preventDefault(); go("events"); }}>
                 ← Listeye dön
               </a>
             </div>
           ))}
 
         {(page === "add" || page === "update") && (
-          <form className="form" noValidate onSubmit={(e) => e.preventDefault()}>
-            <p>
-              <label htmlFor="ad">Etkinlik adı</label>
-              <input type="text" id="ad" name="ad" maxLength={80} />
-            </p>
-            <p>
-              <label htmlFor="kategori">Kategori</label>
-              <select id="kategori" name="kategori">
-                <option value="">Seçiniz</option>
-                {categories.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </p>
-            <p>
-              <label htmlFor="tarih">Tarih</label>
-              <input type="date" id="tarih" name="tarih" />
-            </p>
-            <p>
-              <label htmlFor="saat">Saat</label>
-              <input type="time" id="saat" name="saat" />
-            </p>
-            <p>
-              <label htmlFor="yer">Yer</label>
-              <input type="text" id="yer" name="yer" />
-            </p>
-            <p>
-              <label htmlFor="kontenjan">Kontenjan (isteğe bağlı)</label>
-              <input type="number" id="kontenjan" name="kontenjan" min={1} />
-            </p>
-            <p>
-              <label htmlFor="aciklama">Açıklama</label>
-              <textarea id="aciklama" name="aciklama" rows={5} />
-            </p>
-            <p>
-              <button type="submit">Kaydet</button>
-            </p>
-          </form>
+          <EventForm onSubmit={() => window.scrollTo(0, 0)} />
         )}
       </main>
 
