@@ -1,4 +1,4 @@
-**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app
+**Canlı adres:** https://serhatsaraloglu-frontend.vercel.app
 
 # Kampüs Etkinlikleri
 
@@ -93,3 +93,49 @@ Yeni dosyalar:
 - `frontend/src/utils/format-date.ts` — `formatDate`
 
 **Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel ayarı değişmedi: Root Directory `frontend`, Preset `Vite`)
+
+## Sprint 6 + Vize · Router, Context ve Yönetim
+
+**Canlı adres:** https://serhatsaraloglu-frontend.vercel.app (Vercel Root Directory `frontend`, Preset `Vite`)
+
+### Kurulum
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Tarayıcıda http://localhost:5173 açılır.
+
+### Route listesi
+
+| Adres | Sayfa |
+| --- | --- |
+| `/` | HomePage |
+| `/events` | EventsPage |
+| `/events/:id` | EventDetailPage |
+| `/login` | LoginPage |
+| `/register` | RegisterPage |
+| `/forgot-password` | ForgotPasswordPage |
+| `/admin` | AdminPage |
+| `/admin/new` | AddEventPage |
+| `/admin/:id/edit` | EditEventPage |
+| `*` | NotFoundPage |
+
+Ekle ve Güncelle menüde değil, yönetim sayfasının altında. Giriş kontrolü yok: `/admin` doğrudan açılır.
+
+### Bu sprintte
+
+- `react-router-dom`: `main.tsx`'te `BrowserRouter`, `App.tsx`'te `Routes`; App'te state yok
+- `src/context/EventsContext.tsx` — etkinlik listesi ve `addEvent`, `updateEvent`, `deleteEvent`; `useEvents()` hook'u
+- `src/pages/` — 10 sayfa
+- `src/components/forms/EventForm.tsx` — controlled form (`initialData`, `submitText`, `onSubmit`)
+- `src/utils/validate-event.ts` — etkinlik formu kuralları
+- Menü `NavLink`, sayfa içi bağlantılar `Link`; `<a href="#">` kalmadı
+- Yönetim tablosu masaüstünde tablo, telefonda (699px altı) her satır bir kart
+- Giriş, kayıt ve şifremi unuttum formları doğrulanır; gerçek giriş Sprint 10'da
+- `frontend/vercel.json` — Vercel'de `/events/event-2` gibi adresler yenilenince 404 vermesin diye tüm yollar `index.html`'e yönlenir
+- Silinen: `src/types/page.ts`, App'teki sayfa state'i ve `go()`
+
+Eklenen, güncellenen, silinen etkinlikler sayfa yenilenince başlangıç verisine döner (backend Sprint 9+).
