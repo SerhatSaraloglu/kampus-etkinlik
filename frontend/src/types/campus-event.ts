@@ -11,3 +11,16 @@ export interface CampusEvent {
   description: string;
   image?: string;
 }
+
+// Form alanları metin olarak tutulur; kategori ve kontenjan kayıtta dönüştürülür
+export interface EventFormData {
+  title: string;
+  category: Category | "";
+  date: string;
+  time: string;
+  location: string;
+  capacity: string;
+  description: string;
+}
+
+export type FormErrors<T> = Partial<Record<keyof T, string>>;
