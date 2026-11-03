@@ -1,4 +1,4 @@
-**Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app
+**Canlı adres:** https://serhatsaraloglu-frontend.vercel.app
 
 # Kampüs Etkinlikleri
 
@@ -93,3 +93,43 @@ Yeni dosyalar:
 - `frontend/src/utils/format-date.ts` — `formatDate`
 
 **Canlı adres:** https://kampus-etkinlik-sprint1.vercel.app (Vercel ayarı değişmedi: Root Directory `frontend`, Preset `Vite`)
+
+## Sprint 6 · React Router, Context ve CRUD (Vize)
+
+Sayfalar artık `useState` ile değil, React Router ile adres çubuğundan seçiliyor. Etkinlik listesi
+`EventsContext` içinde tutuluyor; ekle, güncelle ve sil işlemlerinin etkisi tüm sayfalarda görünüyor
+(sayfa yenilenince başlangıç verisine döner, kalıcı kayıt backend sprintlerinde gelecek).
+
+10 route (`frontend/src/App.tsx`):
+
+| Yol | Sayfa |
+| --- | --- |
+| `/` | Ana sayfa, yaklaşan 2 etkinlik |
+| `/events` | Tüm etkinlikler, arama + kategori filtresi |
+| `/events/:id` | Etkinlik detayı |
+| `/admin` | Yönetim tablosu: Düzenle, Sil (silmeden önce onay) |
+| `/admin/new` | Etkinlik ekle |
+| `/admin/:id/edit` | Etkinlik güncelle |
+| `/login` | Giriş |
+| `/register` | Kayıt ol |
+| `/forgot-password` | Şifremi unuttum |
+| `*` | Sayfa bulunamadı |
+
+Yeni ve değişen dosyalar:
+
+- `frontend/src/context/events-context.ts` — `EventsContext` ve değer tipi
+- `frontend/src/context/EventsProvider.tsx` — etkinlik state'i; `addEvent`, `updateEvent`, `deleteEvent`
+- `frontend/src/context/use-events.ts` — `useEvents()` hook'u; Provider dışında kullanılırsa hata verir
+- `frontend/src/pages/` — 10 sayfa bileşeni (her route için bir dosya)
+- `frontend/src/components/forms/EventForm.tsx` — `initialData`, `submitText`, `onSubmit`; ekle ve güncellede ortak
+- `frontend/src/utils/validate-event.ts` — etkinlik formu kuralları ve e-posta kontrolü
+- `frontend/src/components/layout/Header.tsx` — başlık ve sekme adı adrese göre seçilir
+- `frontend/src/components/layout/Navigation.tsx` — `NavLink`; açık sayfa `aria-current="page"`
+- `frontend/vercel.json` — tüm yolları `index.html`'e yönlendirir; `/events/event-1` gibi adresler yenilenince 404 vermez
+- `frontend/src/types/page.ts` — silindi (router geldi)
+
+Form doğrulama: etkinlik formu (ad ≥ 3, kategori, tarih, saat, yer, kontenjan 1–1000, açıklama ≥ 10),
+giriş (e-posta, şifre ≥ 6), kayıt (ad soyad ≥ 3, e-posta, şifre ≥ 6, şifreler aynı), şifremi unuttum (e-posta).
+Giriş ve kayıt sadece doğrular; gerçek oturum Sprint 10'da.
+
+**Canlı adres:** https://serhatsaraloglu-frontend.vercel.app (Vercel Root Directory `frontend`, Preset `Vite`)
