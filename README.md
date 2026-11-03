@@ -159,6 +159,7 @@ frontend/src/
 - `frontend/src/components/forms/EventForm.tsx` — controlled form (`initialData`, `submitText`, `onSubmit`); ekle ve güncellede ortak
 - `frontend/src/utils/validate-event.ts` — etkinlik formu kuralları (ad ≥ 3, kategori, tarih, saat, yer, kontenjan 1–1000, açıklama ≥ 10)
 - Menü `NavLink` (açık sayfa beyaz kutuda), sayfa içi bağlantılar `Link`; `<a href="#">` kalmadı
+- Tarayıcı sekmesinin adı açık sayfaya göre değişir (`Header` adresi `useLocation` ile okur); örn. "Etkinlik Yönetimi — Kampüs Etkinlikleri"
 - Yönetim tablosu masaüstünde tablo, telefonda (699px altı) her satır bir kart; silmeden önce `window.confirm`
 - Giriş, kayıt ve şifremi unuttum formları doğrulanır; gerçek giriş Sprint 10'da
 - `frontend/vercel.json` — Vercel'de `/events/event-2` gibi adresler yenilenince 404 vermesin diye tüm yollar `index.html`'e yönlenir
