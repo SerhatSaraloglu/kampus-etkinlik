@@ -1,10 +1,17 @@
-**Canlı adres:** https://serhatsaraloglu-frontend.vercel.app
-
 # Kampüs Etkinlikleri
+
+**Canlı adres:** https://serhatsaraloglu-frontend.vercel.app
 
 Web Teknolojileri ve Programlama dersi dönem projesi. Kampüs etkinliklerinin
 listelendiği, detaylarının görüntülendiği ve yeni etkinlik ekleme/güncelleme
 formlarının bulunduğu bir uygulama.
+
+Serhat Saraloğlu · 2211012057
+
+> Güncel uygulama `frontend/` klasöründe (Vite + React + TypeScript). `sprint1/`–`sprint3/` klasörleri
+> önceki sprintlerin teslimleri olarak duruyor. Tüm sprintler aynı Vercel projesinden yayınlanıyor; bu yüzden
+> aşağıdaki eski sprint bölümlerindeki `kampus-etkinlik-sprint1.vercel.app` adresi de artık güncel `frontend/`
+> sürümünü gösterir. Her sprintin teslim hali git tag'lerinde: `sprint-01` … `sprint-05`, vize için `frontend`.
 
 ## Sprint 1 · HTML, Git ve Yayına Alma
 
@@ -125,17 +132,39 @@ Tarayıcıda http://localhost:5173 açılır.
 
 Ekle ve Güncelle menüde değil, yönetim sayfasının altında. Giriş kontrolü yok: `/admin` doğrudan açılır.
 
+### Klasör yapısı
+
+```
+frontend/src/
+  components/
+    layout/   Header Navigation Footer
+    events/   EventCard EventList EventFilter EventDetail
+    forms/    EventForm
+  context/    EventsContext.tsx
+  pages/      HomePage EventsPage EventDetailPage
+              AdminPage AddEventPage EditEventPage
+              LoginPage RegisterPage ForgotPasswordPage
+              NotFoundPage
+  data/       events.ts
+  types/      campus-event.ts
+  utils/      filter-events format-date validate-event
+  App.tsx App.css index.css main.tsx
+```
+
 ### Bu sprintte
 
 - `react-router-dom`: `main.tsx`'te `BrowserRouter`, `App.tsx`'te `Routes`; App'te state yok
-- `src/context/EventsContext.tsx` — etkinlik listesi ve `addEvent`, `updateEvent`, `deleteEvent`; `useEvents()` hook'u
-- `src/pages/` — 10 sayfa
-- `src/components/forms/EventForm.tsx` — controlled form (`initialData`, `submitText`, `onSubmit`)
-- `src/utils/validate-event.ts` — etkinlik formu kuralları
-- Menü `NavLink`, sayfa içi bağlantılar `Link`; `<a href="#">` kalmadı
-- Yönetim tablosu masaüstünde tablo, telefonda (699px altı) her satır bir kart
+- `frontend/src/context/EventsContext.tsx` — etkinlik listesi ve `addEvent`, `updateEvent`, `deleteEvent`; `useEvents()` hook'u
+- `frontend/src/pages/` — 10 sayfa; her sayfa başlığını `<h2 className="bolum-baslik">` ile yazar, Header sabit
+- `frontend/src/components/forms/EventForm.tsx` — controlled form (`initialData`, `submitText`, `onSubmit`); ekle ve güncellede ortak
+- `frontend/src/utils/validate-event.ts` — etkinlik formu kuralları (ad ≥ 3, kategori, tarih, saat, yer, kontenjan 1–1000, açıklama ≥ 10)
+- Menü `NavLink` (açık sayfa beyaz kutuda), sayfa içi bağlantılar `Link`; `<a href="#">` kalmadı
+- Yönetim tablosu masaüstünde tablo, telefonda (699px altı) her satır bir kart; silmeden önce `window.confirm`
 - Giriş, kayıt ve şifremi unuttum formları doğrulanır; gerçek giriş Sprint 10'da
 - `frontend/vercel.json` — Vercel'de `/events/event-2` gibi adresler yenilenince 404 vermesin diye tüm yollar `index.html`'e yönlenir
+- Font yığını `"Palatino Linotype", Palatino, serif` (Mac'te Palatino Linotype yok)
 - Silinen: `src/types/page.ts`, App'teki sayfa state'i ve `go()`
 
-Eklenen, güncellenen, silinen etkinlikler sayfa yenilenince başlangıç verisine döner (backend Sprint 9+).
+Eklenen, güncellenen, silinen etkinlikler sayfa yenilenince başlangıç verisine döner; kalıcı kayıt backend sprintlerinde gelecek.
+
+Teslim: `git tag frontend`.
