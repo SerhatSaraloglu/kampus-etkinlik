@@ -4,7 +4,7 @@
   --ton: mod(var(--no), 360);
   --renk-ana: hsl(var(--ton) 65% 38%);
   --renk-zemin: hsl(var(--ton) 30% 97%);
-  --font: "Palatino Linotype", serif;
+  --font: "Palatino Linotype", Palatino, serif;
   --bosluk-m: 1rem;  --kose: 8px;
 
   /* Ton 57 açık bir sarı: okunurluk için yazılar aynı tonun koyusu */
@@ -73,8 +73,11 @@ header {
   padding-bottom: 0;
 }
 
+/* Bağlantıların kendi iç boşluğu var; yazı başlıkla aynı hizada kalsın */
 nav.menu {
   padding-top: 0;
+  padding-left: var(--bosluk-s);
+  padding-right: var(--bosluk-s);
 }
 
 header h1 {
@@ -89,7 +92,7 @@ header p {
 nav {
   display: flex;
   flex-wrap: wrap;
-  column-gap: var(--bosluk-m);
+  gap: 0.25rem;
 }
 
 nav a {
@@ -98,11 +101,16 @@ nav a {
   display: inline-flex;
   align-items: center;
   min-height: var(--dokunma);
+  padding: 0 0.5rem;
+  border-radius: var(--kose);
 }
 
+/* Aktif link beyaz kutuda (Sprint 4, slayt 11) */
 nav a[aria-current="page"] {
+  background: var(--renk-kart);
+  color: var(--renk-vurgu);
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* ---------- İçerik alanı ---------- */
@@ -373,6 +381,10 @@ a.buton:focus-visible {
   nav.menu {
     padding-left: max(var(--bosluk-m), (100% - var(--genislik)) / 2 + var(--bosluk-m));
     padding-right: max(var(--bosluk-m), (100% - var(--genislik)) / 2 + var(--bosluk-m));
+  }
+
+  nav a {
+    padding: 0 0.75rem;
   }
 
   .kartlar {
