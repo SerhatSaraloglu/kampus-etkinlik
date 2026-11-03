@@ -280,12 +280,12 @@ textarea:user-invalid {
   color: var(--renk-hata);
 }
 
-.hata {
+.hata-metni {
   color: var(--renk-hata);
   font-size: 0.9375rem;
 }
 
-.hata:empty {
+.hata-metni:empty {
   display: none;
 }
 
@@ -304,7 +304,8 @@ textarea:user-invalid {
   color: var(--renk-hata);
 }
 
-.mesaj.basari {
+.mesaj.basari,
+.mesaj-basari {
   background: hsl(140 60% 94%);
   border: 2px solid hsl(140 55% 28%);
   color: hsl(140 60% 16%);
@@ -330,6 +331,40 @@ button {
 button:hover,
 button:focus-visible {
   background: var(--renk-yazi);
+}
+
+/* Buton görünümlü bağlantı (Link className="buton") */
+a.buton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--dokunma);
+  padding: var(--bosluk-s) var(--bosluk-l);
+  background: var(--renk-vurgu);
+  color: var(--renk-kart);
+  border-radius: var(--kose);
+}
+
+a.buton:hover,
+a.buton:focus-visible {
+  background: var(--renk-yazi);
+  text-decoration: none;
+}
+
+.bolum-baslik {
+  margin-bottom: var(--bosluk-m);
+}
+
+.form-baglantilar {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--bosluk-l);
+}
+
+.form-baglantilar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--dokunma);
 }
 
 /* ---------- Geniş ekran ---------- */
@@ -390,4 +425,30 @@ button:focus-visible {
   button {
     width: auto;
   }
+
+  /* form p sütun yönlü flex; buton içeriği kadar geniş kalsın */
+  form p > button {
+    align-self: flex-start;
+  }
+}
+
+/* ---------- Yönetim tablosu: masaüstünde tablo, telefonda kart ---------- */
+.tablo { width: 100%; border-collapse: collapse; }
+/* Başlık bandıyla aynı: ton 57 açık olduğu için yazı koyu */
+.tablo th { background: var(--renk-ana); color: var(--renk-yazi); text-align: left; padding: var(--bosluk-s) var(--bosluk-m); }
+.tablo td { padding: var(--bosluk-s) var(--bosluk-m); border-bottom: 1px solid var(--renk-cizgi); background: var(--renk-kart); }
+.islemler { display: flex; gap: var(--bosluk-s); }
+.islemler button { width: auto; }
+.buton-sil { background: var(--renk-hata); }
+.buton-sil:hover, .buton-sil:focus-visible { background: hsl(0 70% 30%); }
+
+@media (max-width: 699px) {
+  .tablo thead { display: none; }
+  .tablo tr { display: block; margin-bottom: var(--bosluk-m); border: 1px solid var(--renk-cizgi);
+    border-radius: var(--kose); background: var(--renk-kart); overflow: hidden; }
+  .tablo td { display: block; border-bottom: 0; }
+  .tablo td.islemler { display: flex; }
+  .tablo td[data-baslik]::before {
+    content: attr(data-baslik) ": ";
+    font-weight: 700; }
 }
