@@ -1,13 +1,12 @@
+import { Link } from "react-router-dom";
 import type { CampusEvent } from "../../types/campus-event";
 import { formatDate } from "../../utils/format-date";
 
 interface EventDetailProps {
   event: CampusEvent;
-  onBack: () => void;
-  onEdit: (id: string) => void;
 }
 
-function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
+function EventDetail({ event }: EventDetailProps) {
   return (
     <article className={event.image ? "detay" : "detay afissiz"}>
       {event.image && (
@@ -28,27 +27,13 @@ function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
         <dt>Kategori</dt>
         <dd>{event.category}</dd>
         <dt>Kontenjan</dt>
-        <dd>{event.capacity}</dd>
+        <dd>{event.capacity} kişi</dd>
       </dl>
       <p>{event.description}</p>
-      <a
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          onEdit(event.id);
-        }}
-      >
-        Bu etkinliği güncelle
-      </a>
-      <a
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          onBack();
-        }}
-      >
-        ← Listeye dön
-      </a>
+      <p className="form-butonlar">
+        <Link className="buton" to="/events">← Listeye dön</Link>
+        <Link className="buton" to={`/admin/${event.id}/edit`}>Bu etkinliği güncelle</Link>
+      </p>
     </article>
   );
 }

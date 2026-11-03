@@ -16,12 +16,12 @@ function EventFilter({
   onCategoryChange,
 }: EventFilterProps) {
   return (
-    <form className="filtre" onSubmit={(e) => e.preventDefault()}>
+    <form className="filtre" role="search" onSubmit={(e) => e.preventDefault()}>
       <label htmlFor="arama">Etkinlik ara</label>
       <input
         type="search"
         id="arama"
-        placeholder="atölye, kariyer..."
+        placeholder="Örn. atölye, kariyer"
         value={searchText}
         onChange={(e) => onSearchChange(e.target.value)}
       />
