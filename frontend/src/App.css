@@ -105,6 +105,16 @@ nav a[aria-current="page"] {
   text-decoration: underline;
 }
 
+/* Menü bağlantıları bir liste içinde */
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--bosluk-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 /* ---------- İçerik alanı ---------- */
 main {
   max-width: var(--genislik);
@@ -157,6 +167,116 @@ footer {
   display: inline-flex;
   align-items: center;
   min-height: var(--dokunma);
+}
+
+.kart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bosluk-s);
+}
+
+.kart-kategori {
+  align-self: flex-start;
+  padding: 0 var(--bosluk-s);
+  background: var(--renk-zemin);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+  color: var(--renk-vurgu);
+  font-weight: bold;
+}
+
+.sonuc-sayisi {
+  color: var(--renk-vurgu);
+  font-weight: bold;
+}
+
+/* ---------- Buton görünümlü bağlantılar ---------- */
+a.buton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--dokunma);
+  padding: var(--bosluk-s) var(--bosluk-l);
+  background: var(--renk-vurgu);
+  color: var(--renk-kart);
+  border-radius: var(--kose);
+  text-decoration: none;
+}
+
+a.buton:hover,
+a.buton:focus-visible {
+  background: var(--renk-yazi);
+}
+
+.form-butonlar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bosluk-s);
+}
+
+.form-baglantilar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bosluk-s) var(--bosluk-l);
+}
+
+.form-baglantilar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--dokunma);
+}
+
+/* ---------- Yönetim tablosu: telefonda her satır bir kart ---------- */
+.tablo {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablo thead {
+  display: none;
+}
+
+.tablo tr {
+  display: block;
+  margin-bottom: var(--bosluk-m);
+  padding: var(--bosluk-m);
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+}
+
+.tablo td {
+  display: block;
+  padding: var(--bosluk-s) 0;
+}
+
+.tablo td[data-baslik]::before {
+  content: attr(data-baslik) ": ";
+  font-weight: bold;
+}
+
+.islemler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bosluk-s);
+}
+
+.tablo td.islemler {
+  display: flex;
+}
+
+.tablo .islemler a.buton,
+.tablo .islemler button {
+  flex: 1;
+}
+
+button.buton-sil {
+  background: var(--renk-hata);
+}
+
+button.buton-sil:hover,
+button.buton-sil:focus-visible {
+  background: hsl(0 70% 30%);
 }
 
 /* ---------- Etkinlik detayı ---------- */
@@ -389,5 +509,45 @@ button:focus-visible {
 
   button {
     width: auto;
+  }
+
+  /* form p sütun yönlü flex; buton genişliği içeriği kadar kalsın */
+  form p > button {
+    align-self: flex-start;
+  }
+
+  /* Geniş ekranda gerçek tablo */
+  .tablo thead {
+    display: table-header-group;
+  }
+
+  .tablo th {
+    padding: var(--bosluk-s) var(--bosluk-m);
+    background: var(--renk-ana);
+    text-align: left;
+  }
+
+  .tablo tr {
+    display: table-row;
+    border: 0;
+    border-bottom: 1px solid var(--renk-cizgi);
+    border-radius: 0;
+  }
+
+  .tablo td,
+  .tablo td.islemler {
+    display: table-cell;
+    padding: var(--bosluk-s) var(--bosluk-m);
+    vertical-align: middle;
+  }
+
+  .tablo td[data-baslik]::before {
+    content: none;
+  }
+
+  .tablo .islemler a.buton,
+  .tablo .islemler button {
+    flex: none;
+    margin-right: var(--bosluk-s);
   }
 }
