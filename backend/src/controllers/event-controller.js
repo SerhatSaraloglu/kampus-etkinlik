@@ -19,21 +19,20 @@ export function getEventById(req, res) {
 
 // POST /events
 export function createEvent(req, res) {
-  const { title, category, capacity, date, time, location, description } =
-    req.body ?? {};
-  if (!title || !category || !date) return res.status(400)
-    .json({ error: { message: "title, category and date are required" } });
+  const { title, category, capacity, date,
+    time, location, description } = req.body ?? {};
 
-  const event = {
+  if (!title || !category || !date) {
+    return res.status(400).json({ error:
+      { message: "title, category and date are required" } });
+  }
+  const newEvent = {
     id: `event-${Date.now()}`,
-    title,
-    category,
-    capacity,
-    date,
-    time,
-    location,
-    description,
+    title, category, date,
+    capacity: Number(capacity) || 0,
+    time: time ?? "", location: location ?? "",
+    description: description ?? "",
   };
-  events.push(event);
-  res.status(201).json(event);
+  events.push(newEvent);
+  res.status(201).json(newEvent);
 }
