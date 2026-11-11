@@ -8,10 +8,10 @@ formlarının bulunduğu bir uygulama.
 
 Serhat Saraloğlu · 2211012057
 
-> Güncel uygulama `frontend/` klasöründe (Vite + React + TypeScript). `sprint1/`–`sprint3/` klasörleri
+> Güncel uygulama `frontend/` klasöründe (Vite + React + TypeScript); Sprint 7'den itibaren API `backend/` klasöründe (Node + Express). `sprint1/`–`sprint3/` klasörleri
 > önceki sprintlerin teslimleri olarak duruyor. Tüm sprintler aynı Vercel projesinden yayınlanıyor; bu yüzden
 > aşağıdaki eski sprint bölümlerindeki `kampus-etkinlik-sprint1.vercel.app` adresi de artık güncel `frontend/`
-> sürümünü gösterir. Her sprintin teslim hali git tag'lerinde: `sprint-01` … `sprint-05`, vize için `frontend`.
+> sürümünü gösterir. Her sprintin teslim hali git tag'lerinde: `sprint-01` … `sprint-05`, vize için `frontend`, sonra `sprint-07` …
 
 ## Sprint 1 · HTML, Git ve Yayına Alma
 
@@ -169,3 +169,26 @@ frontend/src/
 Eklenen, güncellenen, silinen etkinlikler sayfa yenilenince başlangıç verisine döner; kalıcı kayıt backend sprintlerinde gelecek.
 
 Teslim: `git tag frontend`.
+
+## Sprint 7 · Express ile REST API
+
+Frontend'in yanına ikinci uygulama: etkinlikleri JSON olarak veren `backend/` (Node + Express, localhost:3000).
+Frontend bu sprintte değişmedi; backend canlıya alınmadı. Veri şimdilik bellekte (Sprint 8'de MongoDB).
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+- `backend/src/app.js` — `cors()`, `express.json()`, `GET /health`, `/events` route'ları, eşleşmeyen adrese 404
+- `backend/src/server.js` — `import "dotenv/config"` ile `PORT`'u `.env`'den okur
+- `backend/src/routes/event-routes.js` + `backend/src/controllers/event-controller.js` — route ve controller ayrı
+- `backend/src/data/events.js` — kendi 6 etkinliğim (`event-1` … `event-6`)
+- `GET /health` → `{ "status": "ok", "time": "...", "student": "2211012057" }`
+- `GET /events`, `GET /events/:id` (yoksa 404), `POST /events` (201; title/category/date eksikse 400)
+- `backend/requests/kampus-api.json` — 6 isteklik Postman koleksiyonu
+- `.env` ve `node_modules` GitHub'da yok; REST sözleşmesi `backend/README.md`'de
+
+Teslim: `git tag sprint-07`.
