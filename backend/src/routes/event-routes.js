@@ -1,5 +1,7 @@
 import { Router } from "express";
+import { getEvents, getEventById } from "../controllers/event-controller.js";
 
 const router = Router();
-// Etkinlik endpoint'leri Adım 7'de eklenecek.
+router.get("/", getEvents);
+router.get("/:id", getEventById);
 export default router;
