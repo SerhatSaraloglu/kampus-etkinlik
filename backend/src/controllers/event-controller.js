@@ -16,3 +16,24 @@ export function getEventById(req, res) {
     .json({ error: { message: "Event not found" } });
   res.json(event);
 }
+
+// POST /events
+export function createEvent(req, res) {
+  const { title, category, capacity, date, time, location, description } =
+    req.body ?? {};
+  if (!title || !category || !date) return res.status(400)
+    .json({ error: { message: "title, category and date are required" } });
+
+  const event = {
+    id: `event-${Date.now()}`,
+    title,
+    category,
+    capacity,
+    date,
+    time,
+    location,
+    description,
+  };
+  events.push(event);
+  res.status(201).json(event);
+}
