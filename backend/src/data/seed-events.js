@@ -1,6 +1,5 @@
-export const events = [
+export const seedEvents = [
   {
-    id: "event-1",
     title: "Mezun Buluşması: Sektörden Hikâyeler",
     category: "Seminer",
     capacity: 120,
@@ -10,7 +9,6 @@ export const events = [
     description: "Farklı sektörlerde çalışan mezunlar ilk iş deneyimlerini ve staj tavsiyelerini anlatıyor.",
   },
   {
-    id: "event-2",
     title: "Drone Montaj Atölyesi",
     category: "Atölye",
     capacity: 30,
@@ -20,7 +18,6 @@ export const events = [
     description: "Küçük bir quadcopter'ı parça parça birleştirip ilk uçuş testini birlikte yapıyoruz.",
   },
   {
-    id: "event-3",
     title: "Oltalama Saldırılarını Tanımak",
     category: "Söyleşi",
     capacity: 80,
@@ -30,7 +27,6 @@ export const events = [
     description: "Gerçek oltalama e-postaları üzerinden sahte bağlantıları ayırt etmeyi ve hesap güvenliğini konuşuyoruz.",
   },
   {
-    id: "event-4",
     title: "Üretken Yapay Zekâ ve Etik",
     category: "Seminer",
     capacity: 150,
@@ -40,7 +36,6 @@ export const events = [
     description: "Metin ve görsel üreten modellerin nasıl çalıştığı; telif ve mahremiyet gibi etik sorular.",
   },
   {
-    id: "event-5",
     title: "Figma ile Mobil Arayüz Tasarımı",
     category: "Atölye",
     capacity: 25,
@@ -50,7 +45,6 @@ export const events = [
     description: "Bir kampüs uygulamasının ekranlarını Figma'da çizip tıklanabilir prototipe dönüştürme çalışması.",
   },
   {
-    id: "event-6",
     title: "24 Saatlik Kampüs Hackathonu",
     category: "Yarışma",
     capacity: 200,
