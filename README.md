@@ -192,3 +192,28 @@ npm run dev
 - `.env` ve `node_modules` GitHub'da yok; REST sözleşmesi `backend/README.md`'de
 
 Teslim: `git tag sprint-07`.
+
+## Sprint 8 · MongoDB ve Mongoose
+
+Adresler aynı kaldı (`GET /events`, `GET /events/:id`, `POST /events`), verinin yeri değişti: controller'lar dizi yerine
+`Event` modelini kullanıyor, etkinlikler MongoDB'deki `kampus` veritabanının `events` koleksiyonunda duruyor.
+Sunucu kapanıp açılınca POST ile eklenen kayıtlar kaybolmuyor. Frontend bu sprintte değişmedi.
+
+```bash
+cd backend
+npm install
+cp .env.example .env     # MONGODB_URI=kendi veritabanı adresin
+npm run seed
+npm run dev
+```
+
+- `backend/src/config/database.js` — `MONGODB_URI` ile bağlanır; adresi değil sadece host ve veritabanı adını yazar
+- `backend/src/server.js` — önce veritabanı, sonra `app.listen`; bağlanamazsa `process.exit(1)`
+- `backend/src/models/event-model.js` — schema: `required`, `trim`, `minlength`/`maxlength`, `enum`, `min`/`default`, `timestamps`
+- `backend/src/data/seed-events.js` + `backend/src/seed.js` — Sprint 7'deki 6 etkinlik (id'siz); `deleteMany` sonra `insertMany`, `npm run seed` her seferinde 6 kayıt
+- Controller'lar `async`/`await` + `try/catch`: `Event.find`, `Event.findById` (geçersiz id `isValidObjectId` ile 404), `Event.create` (`ValidationError` → 400)
+- `backend/src/app.js` — en sonda 4 parametreli hata middleware'i: beklenmeyen hata 500 `"Server error"`, sunucu çökmez
+- id'ler artık MongoDB `_id`'si (`"event-2"` yerine `"6af57a00..."`); Postman koleksiyonunun 3. isteği listedeki `_id`'yi kullanıyor
+- `.env.example` sadece yer tutucu (`mongodb://127.0.0.1:27017/kampus`); gerçek Atlas adresi ve şifre sadece `.env`'de, git geçmişinde yok
+
+Teslim: `git tag sprint-08`.
