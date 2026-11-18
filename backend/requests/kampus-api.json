@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "ab35ee8d-bbce-4a6e-86a5-594f18ea77ca",
 		"name": "Kampüs API",
-		"description": "Sprint 7 · Kampüs Etkinlikleri REST API · 2211012057",
+		"description": "Sprint 8 · Kampüs Etkinlikleri REST API (MongoDB) · 2211012057",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "60117711",
 		"_collection_link": "https://go.postman.co/collection/60117711-ab35ee8d-bbce-4a6e-86a5-594f18ea77ca?source=collection_link"
@@ -47,7 +47,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+							"pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\n// listedeki ilk etkinliğin _id si 3. istekte kullanılır\nconst events = pm.response.json();\nif (events.length > 0) {\n    pm.collectionVariables.set(\"eventId\", events[0]._id);\n}"
 						]
 					}
 				}
@@ -87,7 +87,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/events/event-2",
+					"raw": "http://localhost:3000/events/{{eventId}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -95,7 +95,7 @@
 					"port": "3000",
 					"path": [
 						"events",
-						"event-2"
+						"{{eventId}}"
 					]
 				},
 				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -223,6 +223,12 @@
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "eventId",
+			"value": "6afd41c1d89304c765df1823"
 		}
 	]
 }
