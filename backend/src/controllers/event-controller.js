@@ -30,3 +30,17 @@ export async function getEventById(req, res, next) {
     next(err);
   }
 }
+
+// POST /events
+export async function createEvent(req, res, next) {
+  try {
+    const event = await Event.create(req.body ?? {});
+    res.status(201).json(event);
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      return res.status(400)
+        .json({ error: { message: err.message } });
+    }
+    next(err);
+  }
+}
